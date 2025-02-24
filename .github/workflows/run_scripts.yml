@@ -25,10 +25,8 @@ jobs:
 
       - name: Run WolfWiseDB Scripts
         run: |
-          python aaWolfWiseETL/records/get_links.py
           python aaWolfWiseETL/records/bball_career_get_records.py
           python aaWolfWiseETL/records/bball_index_get_records.py
-          python aaWolfWiseETL/records/bball_reference_nba_records.py
           python aaWolfWiseETL/distributions/stat_distributions.py
           python aaWolfWiseETL/players_on_league_leaders_dash/timberwolves_players_on_league_leaderboard.py
           python aaWolfWiseETL/stat_cards/get_wolves_season_stats.py
