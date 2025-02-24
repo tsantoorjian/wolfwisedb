@@ -1,0 +1,2389 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "MyAPI",
+      "version": "v1"
+    },
+    "paths": {
+      "/api/PlayerDataAdvanced/query": {
+        "get": {
+          "tags": [
+            "PlayerDataAdvanced"
+          ],
+          "summary": "Multi paramter query",
+          "parameters": [
+            {
+              "name": "playerName",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "season",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            {
+              "name": "team",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "playerId",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "sortBy",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "default": "PlayerName"
+              }
+            },
+            {
+              "name": "ascending",
+              "in": "query",
+              "schema": {
+                "type": "boolean",
+                "default": true
+              }
+            },
+            {
+              "name": "pageNumber",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "format": "int32",
+                "default": 1
+              }
+            },
+            {
+              "name": "pageSize",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "format": "int32",
+                "default": 10
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataAdvanced"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataAdvanced"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataAdvanced"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PlayerDataAdvanced/name/{playerName}": {
+        "get": {
+          "tags": [
+            "PlayerDataAdvanced"
+          ],
+          "summary": "Gets data for specfic player by name.",
+          "parameters": [
+            {
+              "name": "playerName",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataAdvanced"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataAdvanced"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataAdvanced"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PlayerDataAdvanced/season/{season}": {
+        "get": {
+          "tags": [
+            "PlayerDataAdvanced"
+          ],
+          "summary": "Gets data for specfic all players in a season.",
+          "parameters": [
+            {
+              "name": "season",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataAdvanced"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataAdvanced"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataAdvanced"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PlayerDataAdvanced/playerid/{playerId}": {
+        "get": {
+          "tags": [
+            "PlayerDataAdvanced"
+          ],
+          "parameters": [
+            {
+              "name": "playerId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataAdvanced"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataAdvanced"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataAdvanced"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PlayerDataAdvanced/team/{team}": {
+        "get": {
+          "tags": [
+            "PlayerDataAdvanced"
+          ],
+          "summary": "Get all data, across all seasons for any team.",
+          "parameters": [
+            {
+              "name": "team",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataAdvanced"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataAdvanced"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataAdvanced"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PlayerDataAdvanced/count": {
+        "get": {
+          "tags": [
+            "PlayerDataAdvanced"
+          ],
+          "summary": "Method to test the database connection and retrieve player count.",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PlayerDataAdvancedPlayoffs/query": {
+        "get": {
+          "tags": [
+            "PlayerDataAdvancedPlayoffs"
+          ],
+          "summary": "Multi paramter query",
+          "parameters": [
+            {
+              "name": "playerName",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "season",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            {
+              "name": "team",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "playerId",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "sortBy",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "default": "PlayerName"
+              }
+            },
+            {
+              "name": "ascending",
+              "in": "query",
+              "schema": {
+                "type": "boolean",
+                "default": true
+              }
+            },
+            {
+              "name": "pageNumber",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "format": "int32",
+                "default": 1
+              }
+            },
+            {
+              "name": "pageSize",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "format": "int32",
+                "default": 10
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataAdvancedPlayoffs"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataAdvancedPlayoffs"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataAdvancedPlayoffs"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PlayerDataAdvancedPlayoffs/name/{playerName}": {
+        "get": {
+          "tags": [
+            "PlayerDataAdvancedPlayoffs"
+          ],
+          "summary": "Gets data for specfic player by name.",
+          "parameters": [
+            {
+              "name": "playerName",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataAdvancedPlayoffs"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataAdvancedPlayoffs"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataAdvancedPlayoffs"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PlayerDataAdvancedPlayoffs/season/{season}": {
+        "get": {
+          "tags": [
+            "PlayerDataAdvancedPlayoffs"
+          ],
+          "summary": "Gets data for specfic all players in a season.",
+          "parameters": [
+            {
+              "name": "season",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataAdvancedPlayoffs"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataAdvancedPlayoffs"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataAdvancedPlayoffs"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PlayerDataAdvancedPlayoffs/playerid/{playerId}": {
+        "get": {
+          "tags": [
+            "PlayerDataAdvancedPlayoffs"
+          ],
+          "parameters": [
+            {
+              "name": "playerId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataAdvancedPlayoffs"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataAdvancedPlayoffs"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataAdvancedPlayoffs"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PlayerDataAdvancedPlayoffs/team/{team}": {
+        "get": {
+          "tags": [
+            "PlayerDataAdvancedPlayoffs"
+          ],
+          "summary": "Get all data, across all seasons for any team.",
+          "parameters": [
+            {
+              "name": "team",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataAdvancedPlayoffs"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataAdvancedPlayoffs"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataAdvancedPlayoffs"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PlayerDataAdvancedPlayoffs/count": {
+        "get": {
+          "tags": [
+            "PlayerDataAdvancedPlayoffs"
+          ],
+          "summary": "Method to test the database connection and retrieve player count.",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PlayerDataTotals/query": {
+        "get": {
+          "tags": [
+            "PlayerDataTotals"
+          ],
+          "summary": "Multi paramter query",
+          "parameters": [
+            {
+              "name": "playerName",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "season",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            {
+              "name": "team",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "playerId",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "sortBy",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "default": "PlayerName"
+              }
+            },
+            {
+              "name": "ascending",
+              "in": "query",
+              "schema": {
+                "type": "boolean",
+                "default": true
+              }
+            },
+            {
+              "name": "pageNumber",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "format": "int32",
+                "default": 1
+              }
+            },
+            {
+              "name": "pageSize",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "format": "int32",
+                "default": 10
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataTotals"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataTotals"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataTotals"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PlayerDataTotals/name/{playerName}": {
+        "get": {
+          "tags": [
+            "PlayerDataTotals"
+          ],
+          "summary": "Gets data for specfic player by name.",
+          "parameters": [
+            {
+              "name": "playerName",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataTotals"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataTotals"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataTotals"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PlayerDataTotals/season/{season}": {
+        "get": {
+          "tags": [
+            "PlayerDataTotals"
+          ],
+          "summary": "Gets data for specfic all players in a season.",
+          "parameters": [
+            {
+              "name": "season",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataTotals"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataTotals"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataTotals"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PlayerDataTotals/playerid/{playerId}": {
+        "get": {
+          "tags": [
+            "PlayerDataTotals"
+          ],
+          "parameters": [
+            {
+              "name": "playerId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataTotals"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataTotals"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataTotals"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PlayerDataTotals/team/{team}": {
+        "get": {
+          "tags": [
+            "PlayerDataTotals"
+          ],
+          "summary": "Get all data, across all seasons for any team.",
+          "parameters": [
+            {
+              "name": "team",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataTotals"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataTotals"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataTotals"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PlayerDataTotals/count": {
+        "get": {
+          "tags": [
+            "PlayerDataTotals"
+          ],
+          "summary": "Method to test the database connection and retrieve player count.",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PlayerDataTotalsPlayoffs/query": {
+        "get": {
+          "tags": [
+            "PlayerDataTotalsPlayoffs"
+          ],
+          "summary": "Multi paramter query",
+          "parameters": [
+            {
+              "name": "playerName",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "season",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            {
+              "name": "team",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "playerId",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "sortBy",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "default": "PlayerName"
+              }
+            },
+            {
+              "name": "ascending",
+              "in": "query",
+              "schema": {
+                "type": "boolean",
+                "default": true
+              }
+            },
+            {
+              "name": "pageNumber",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "format": "int32",
+                "default": 1
+              }
+            },
+            {
+              "name": "pageSize",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "format": "int32",
+                "default": 10
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataTotalsPlayoffs"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataTotalsPlayoffs"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataTotalsPlayoffs"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PlayerDataTotalsPlayoffs/name/{playerName}": {
+        "get": {
+          "tags": [
+            "PlayerDataTotalsPlayoffs"
+          ],
+          "summary": "Gets data for specfic player by name.",
+          "parameters": [
+            {
+              "name": "playerName",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataTotalsPlayoffs"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataTotalsPlayoffs"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataTotalsPlayoffs"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PlayerDataTotalsPlayoffs/season/{season}": {
+        "get": {
+          "tags": [
+            "PlayerDataTotalsPlayoffs"
+          ],
+          "summary": "Gets data for specfic all players in a season.",
+          "parameters": [
+            {
+              "name": "season",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataTotalsPlayoffs"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataTotalsPlayoffs"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataTotalsPlayoffs"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PlayerDataTotalsPlayoffs/playerid/{playerId}": {
+        "get": {
+          "tags": [
+            "PlayerDataTotalsPlayoffs"
+          ],
+          "parameters": [
+            {
+              "name": "playerId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataTotalsPlayoffs"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataTotalsPlayoffs"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataTotalsPlayoffs"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PlayerDataTotalsPlayoffs/team/{team}": {
+        "get": {
+          "tags": [
+            "PlayerDataTotalsPlayoffs"
+          ],
+          "summary": "Get all data, across all seasons for any team.",
+          "parameters": [
+            {
+              "name": "team",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataTotalsPlayoffs"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataTotalsPlayoffs"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PlayerDataTotalsPlayoffs"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/PlayerDataTotalsPlayoffs/count": {
+        "get": {
+          "tags": [
+            "PlayerDataTotalsPlayoffs"
+          ],
+          "summary": "Method to test the database connection and retrieve player count.",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/ShotChartData": {
+        "get": {
+          "tags": [
+            "ShotChartData"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ShotChartData"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ShotChartData"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ShotChartData"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/ShotChartData/{id}": {
+        "get": {
+          "tags": [
+            "ShotChartData"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ShotChartData"
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ShotChartData"
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ShotChartData"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/ShotChartData/playerid/{playerId}": {
+        "get": {
+          "tags": [
+            "ShotChartData"
+          ],
+          "parameters": [
+            {
+              "name": "playerId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ShotChartData"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ShotChartData"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ShotChartData"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/ShotChartData/distinct-player-names": {
+        "get": {
+          "tags": [
+            "ShotChartData"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/ShotChartData/seasons/{playerName}": {
+        "get": {
+          "tags": [
+            "ShotChartData"
+          ],
+          "parameters": [
+            {
+              "name": "playerName",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "format": "int32"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "format": "int32"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "format": "int32"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/ShotChartData/player/{playerName}/season/{season}": {
+        "get": {
+          "tags": [
+            "ShotChartData"
+          ],
+          "parameters": [
+            {
+              "name": "playerName",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "season",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ShotChartData"
+                    }
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ShotChartData"
+                    }
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ShotChartData"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/ShotChartData/count": {
+        "get": {
+          "tags": [
+            "ShotChartData"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                },
+                "application/json": {
+                  "schema": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                },
+                "text/json": {
+                  "schema": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "PlayerDataAdvanced": {
+          "required": [
+            "age",
+            "playerName"
+          ],
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "playerName": {
+              "maxLength": 255,
+              "minLength": 1,
+              "type": "string"
+            },
+            "position": {
+              "maxLength": 30,
+              "type": "string",
+              "nullable": true
+            },
+            "age": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "games": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "minutesPlayed": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "per": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "tsPercent": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "threePAR": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "ftr": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "offensiveRBPercent": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "defensiveRBPercent": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "totalRBPercent": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "assistPercent": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "stealPercent": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "blockPercent": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "turnoverPercent": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "usagePercent": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "offensiveWS": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "defensiveWS": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "winShares": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "winSharesPer": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "offensiveBox": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "defensiveBox": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "box": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "vorp": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "team": {
+              "maxLength": 30,
+              "type": "string",
+              "nullable": true
+            },
+            "season": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "playerId": {
+              "maxLength": 255,
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "PlayerDataAdvancedPlayoffs": {
+          "required": [
+            "age",
+            "playerName"
+          ],
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "playerName": {
+              "maxLength": 255,
+              "minLength": 1,
+              "type": "string"
+            },
+            "position": {
+              "maxLength": 30,
+              "type": "string",
+              "nullable": true
+            },
+            "age": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "games": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "minutesPlayed": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "per": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "tsPercent": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "threePAR": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "ftr": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "offensiveRBPercent": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "defensiveRBPercent": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "totalRBPercent": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "assistPercent": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "stealPercent": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "blockPercent": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "turnoverPercent": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "usagePercent": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "offensiveWS": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "defensiveWS": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "winShares": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "winSharesPer": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "offensiveBox": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "defensiveBox": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "box": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "vorp": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "team": {
+              "maxLength": 30,
+              "type": "string",
+              "nullable": true
+            },
+            "season": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "playerId": {
+              "maxLength": 255,
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "PlayerDataTotals": {
+          "required": [
+            "age",
+            "playerName"
+          ],
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "playerName": {
+              "maxLength": 255,
+              "minLength": 1,
+              "type": "string"
+            },
+            "position": {
+              "maxLength": 30,
+              "type": "string",
+              "nullable": true
+            },
+            "age": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "games": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "gamesStarted": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "minutesPg": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "fieldGoals": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "fieldAttempts": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "fieldPercent": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "threeFg": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "threeAttempts": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "threePercent": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "twoFg": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "twoAttempts": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "twoPercent": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "effectFgPercent": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "ft": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "ftAttempts": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "ftPercent": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "offensiveRb": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "defensiveRb": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "totalRb": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "assists": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "steals": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "blocks": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "turnovers": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "personalFouls": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "points": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "team": {
+              "maxLength": 30,
+              "type": "string",
+              "nullable": true
+            },
+            "season": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "playerId": {
+              "maxLength": 255,
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "PlayerDataTotalsPlayoffs": {
+          "required": [
+            "age",
+            "playerName"
+          ],
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "playerName": {
+              "maxLength": 255,
+              "minLength": 1,
+              "type": "string"
+            },
+            "position": {
+              "maxLength": 30,
+              "type": "string",
+              "nullable": true
+            },
+            "age": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "games": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "gamesStarted": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "minutesPg": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "fieldGoals": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "fieldAttempts": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "fieldPercent": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "threeFg": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "threeAttempts": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "threePercent": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "twoFg": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "twoAttempts": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "twoPercent": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "effectFgPercent": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "ft": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "ftAttempts": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "ftPercent": {
+              "type": "number",
+              "format": "double",
+              "nullable": true
+            },
+            "offensiveRb": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "defensiveRb": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "totalRb": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "assists": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "steals": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "blocks": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "turnovers": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "personalFouls": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "points": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "team": {
+              "maxLength": 30,
+              "type": "string",
+              "nullable": true
+            },
+            "season": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "playerId": {
+              "maxLength": 255,
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "ShotChartData": {
+          "required": [
+            "date",
+            "opponent",
+            "playerId",
+            "playerName",
+            "qtr",
+            "shotType",
+            "team",
+            "timeRemaining"
+          ],
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "playerName": {
+              "maxLength": 255,
+              "minLength": 1,
+              "type": "string"
+            },
+            "top": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "left": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "date": {
+              "maxLength": 255,
+              "minLength": 1,
+              "type": "string"
+            },
+            "qtr": {
+              "maxLength": 255,
+              "minLength": 1,
+              "type": "string"
+            },
+            "timeRemaining": {
+              "maxLength": 12,
+              "minLength": 1,
+              "type": "string"
+            },
+            "result": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "shotType": {
+              "maxLength": 6,
+              "minLength": 1,
+              "type": "string"
+            },
+            "distanceFt": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "lead": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "teamScore": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "opponentTeamScore": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "opponent": {
+              "maxLength": 30,
+              "minLength": 1,
+              "type": "string"
+            },
+            "team": {
+              "maxLength": 30,
+              "minLength": 1,
+              "type": "string"
+            },
+            "season": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "playerId": {
+              "maxLength": 255,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    }
+  }

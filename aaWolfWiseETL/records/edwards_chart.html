@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html style="height:100%">
+<head>
+  <meta charset="UTF-8">
+  <title>Anthony Edwards: Points Progress (Legend for Records Only)</title>
+  <!-- Include ECharts from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+  <style>
+    #chart {
+      width: 100%;
+      height: 600px; 
+    }
+  </style>
+</head>
+<body>
+<div id="chart"></div>
+<script>
+  // ---------------------------------
+  // Data from your snippet:
+  var name = "Anthony Edwards";
+  var GP = 54;                            // Games played
+  var GAMES_REMAINING = 26;              // Games remaining
+  var current = 1483;                    // Current total points
+  var projection = 2197.037037037037;    // Projected total points
+  var personal_record   = 2049;
+  var franchise_record  = 2061;          // Karl-Anthony Towns
+  var nba_record        = 4029;          // Wilt Chamberlain*
+  // ---------------------------------
+
+  var totalGames = GP + GAMES_REMAINING;
+
+  // 1) Points (Actual)
+  // hide from legend: showInLegend=false
+  var actualSeries = {
+    name: 'Points (Actual)',
+    showInLegend: false,
+    type: 'line',
+    z: 10,
+    data: [
+      [0, 0],
+      [GP, current]
+    ],
+    symbolSize: 10,
+    itemStyle: { color: '#FF5722' },
+    lineStyle: { width: 3, type: 'solid' }
+  };
+
+  // 2) Points (Projection)
+  // also hidden from legend
+  var projectionSeries = {
+    name: 'Points (Projection)',
+    showInLegend: false,
+    type: 'line',
+    z: 1,
+    data: [
+      [GP, current],
+      [GP + GAMES_REMAINING, projection]
+    ],
+    symbolSize: 10,
+    itemStyle: { color: '#FF5722' },
+    lineStyle: { width: 3, type: 'dotted' }
+  };
+
+  // 3) Blinking "Current" point
+  // also hidden from legend
+  var blinkingCurrent = {
+    name: 'Current (Blink)',
+    showInLegend: false,
+    type: 'effectScatter',
+    coordinateSystem: 'cartesian2d',
+    z: 20,
+    data: [
+      [GP, current]
+    ],
+    symbol: 'circle',
+    symbolSize: 10,
+    showEffectOn: 'render',
+    rippleEffect: {
+      period: 1.5,
+      scale: 3,
+      brushType: 'fill'
+    },
+    itemStyle: { color: '#FF5722' }
+  };
+
+  // ---------------------------------------------------------
+  // 4) Three separate "record" series, each with a single markLine
+  //    displayed in the legend so user sees them as dotted lines
+  //    with distinct colors. They have no data points themselves.
+  // ---------------------------------------------------------
+  var personalRecordLine = {
+    name: `Personal Record (${personal_record})`,
+    type: 'line',
+    // These lines should appear in legend => showInLegend=true
+    showInLegend: true,
+    // Hide the base line since we only want the markLine
+    data: [],
+    // no visible data points
+    showSymbol: false,
+    markLine: {
+      symbol: 'none',
+      silent: false, // allows hover
+      lineStyle: {
+        color: '#1f77b4', // matching color
+        type: 'dotted'
+      },
+      data: [
+        {
+          name: 'Personal Record',
+          yAxis: personal_record,
+          label: { show: false } // no label on the chart
+        }
+      ]
+    }
+  };
+
+  var franchiseRecordLine = {
+    name: `Franchise Record (${franchise_record})`,
+    type: 'line',
+    showInLegend: true,
+    data: [],
+    showSymbol: false,
+    markLine: {
+      symbol: 'none',
+      silent: false,
+      lineStyle: {
+        color: '#2ca02c',
+        type: 'dotted'
+      },
+      data: [
+        {
+          name: 'Franchise Record',
+          yAxis: franchise_record,
+          label: { show: false }
+        }
+      ]
+    }
+  };
+
+  var nbaRecordLine = {
+    name: `NBA Record (${nba_record})`,
+    type: 'line',
+    showInLegend: true,
+    data: [],
+    showSymbol: false,
+    markLine: {
+      symbol: 'none',
+      silent: false,
+      lineStyle: {
+        color: '#d62728',
+        type: 'dotted'
+      },
+      data: [
+        {
+          name: 'NBA Record',
+          yAxis: nba_record,
+          label: { show: false }
+        }
+      ]
+    }
+  };
+
+  // Calculate the max Y for the chart
+  var maxY = Math.max(current, projection, personal_record, franchise_record, nba_record);
+
+  var chartDom = document.getElementById('chart');
+  var myChart = echarts.init(chartDom);
+
+  // ECharts option
+  var option = {
+    title: {
+      text: "Anthony Edwards: Points Progress"
+    },
+    legend: {
+      top: 30 // only reference lines appear
+    },
+    tooltip: {
+      trigger: 'item',
+      triggerOn: 'mousemove',
+      formatter: function(params) {
+        // If it's a markLine hover => "Personal Record: 2049 Points", etc
+        if (params.componentType === 'markLine') {
+          return params.data.name + ": " + params.data.yAxis + " Points";
+        }
+
+        // If it's the blinking point
+        if (params.seriesName === 'Current (Blink)') {
+          return (
+            "Games Played: " + params.data[0] + "<br/>" +
+            "Points: " + params.data[1]
+          );
+        }
+
+        // If it's Actual
+        if (params.seriesName === 'Points (Actual)') {
+          if (params.dataIndex === 0) {
+            return "Games Played: 0<br/>Points: 0";
+          } else {
+            // current
+            return "Games Played: " + params.data[0] +
+                   "<br/>Points: " + params.data[1];
+          }
+        }
+
+        // If it's Projection
+        if (params.seriesName === 'Points (Projection)') {
+          if (params.dataIndex === 0) {
+            return '';
+          }
+          // final projected
+          return params.seriesName + "<br/>" +
+                 "Games: " + params.data[0] + "<br/>" +
+                 "Points: " + params.data[1];
+        }
+
+        // If it's a record line data (which is empty) -> won't happen, but just in case:
+        return '';
+      }
+    },
+    xAxis: {
+      type: 'value',
+      name: 'Games',
+      min: 0,
+      max: totalGames,
+      axisLabel: {
+        formatter: function(value) {
+          if (value === 0) return 'Start (0)';
+          if (value === GP) return 'GP: ' + GP;
+          if (value === totalGames) return 'Total: ' + totalGames;
+          return value;
+        }
+      },
+      splitLine: { show: false }
+    },
+    yAxis: {
+      type: 'value',
+      name: 'Points',
+      min: 0,
+      max: maxY * 1.1
+    },
+    // Put all 6 "series" in one array
+    // Only the record lines have showInLegend=true
+    series: [
+      actualSeries,
+      projectionSeries,
+      blinkingCurrent,
+      personalRecordLine,
+      franchiseRecordLine,
+      nbaRecordLine
+    ]
+  };
+
+  myChart.setOption(option);
+</script>
+</body>
+</html>

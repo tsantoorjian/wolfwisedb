@@ -1,0 +1,3 @@
+from basketball_reference_scraper.box_scores import get_box_scores
+
+get_box_scores(date, 'MIN', 'SAS', period='GAME', stat_type='BASIC')
