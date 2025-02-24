@@ -1,0 +1,37 @@
+name: Run WolfWiseDB Scripts
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  run-scripts:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Run WolfWiseDB Scripts
+        run: |
+          python aaWolfWiseETL/records/get_links.py
+          python aaWolfWiseETL/records/bball_career_get_records.py
+          python aaWolfWiseETL/records/bball_index_get_records.py
+          python aaWolfWiseETL/records/bball_reference_nba_records.py
+          python aaWolfWiseETL/distributions/stat_distributions.py
+          python aaWolfWiseETL/players_on_league_leaders_dash/timberwolves_players_on_league_leaderboard.py
+          python aaWolfWiseETL/stat_cards/get_wolves_season_stats.py
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
