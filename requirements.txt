@@ -25,7 +25,7 @@ httpx==0.28.1
 hyperframe==6.1.0
 idna==3.10
 ipykernel==6.29.5
-ipython==8.32.0
+ipython==8.18.1
 jedi==0.19.2
 joblib==1.4.2
 jupyter_client==8.6.3
