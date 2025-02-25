@@ -7,7 +7,7 @@ on:
 
 jobs:
   run-scripts:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout repository
@@ -24,7 +24,7 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           
       - name: Test NBA API Connection
-        run: curl -IL https://stats.nba.com
+        run: curl -I https://stats.nba.com
 
       - name: Run WolfWiseDB Scripts
         run: |
