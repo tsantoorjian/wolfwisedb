@@ -1,9 +1,9 @@
 name: Run WolfWiseDB Scripts
 
 on:
-  push:
-    branches: [ main ]
-  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'  # Runs daily at midnight UTC
+  workflow_dispatch:  # Keeps manual trigger option
 
 jobs:
   run-scripts:
