@@ -22,8 +22,30 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+# Custom NBAStatsHTTP class to include proxy
+class ProxyNBAStatsHTTP(NBAStatsHTTP):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Get proxy from environment variable
+        proxy_url = os.getenv('PROXY_URL')
+        if proxy_url:
+            self.proxies = {
+                'http': proxy_url,
+                'https': proxy_url,
+            }
+        else:
+            self.proxies = {}
+            logger.warning("No PROXY_URL found in environment variables; running without proxy.")
+
+    def send_api_request(self, *args, **kwargs):
+        # Override to include proxies
+        return super().send_api_request(*args, proxies=self.proxies, **kwargs)
+
+# Replace the default HTTP client with our proxy-enabled version
+leaguedashplayerstats.LeagueDashPlayerStats.nba_stats_http_class = ProxyNBAStatsHTTP
+
 # Modify the NBA API headers globally to avoid request blocking
-NBAStatsHTTP.headers.update({
+ProxyNBAStatsHTTP.headers.update({
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
                   "(KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
     "Accept-Language": "en-US,en;q=0.9",
