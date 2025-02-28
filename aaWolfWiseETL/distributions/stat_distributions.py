@@ -197,19 +197,19 @@ def load_to_supabase(df: pd.DataFrame) -> None:
         raise
 
 def check_ip_with_proxy():
-    """Fetch and log the IP address using the proxy"""
+    """Fetch and log the IP address using the proxy, bypassing SSL verification"""
     proxy_url = os.getenv('PROXY_URL')
     proxies = {'http': proxy_url, 'https': proxy_url} if proxy_url else {}
     try:
-        response = requests.get('https://api.ipify.org', proxies=proxies, timeout=10)
+        response = requests.get('https://api.ipify.org', proxies=proxies, timeout=10, verify=False)
         ip = response.text
-        logger.info(f"External IP address detected: {ip}")
+        logger.info(f"External IP address detected via proxy: {ip}")
     except Exception as e:
         logger.error(f"Failed to check IP: {str(e)}")
 
 def main():
     logger.info("Starting stat distribution data collection")
-    check_ip_with_proxy()  # Add this to log IP before API calls
+    check_ip_with_proxy()  # Logs IP before API calls
     try:
         df = get_player_stats()
         load_to_supabase(df)
