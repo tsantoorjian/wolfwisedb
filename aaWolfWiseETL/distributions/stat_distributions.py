@@ -11,6 +11,7 @@ import logging
 from dotenv import load_dotenv
 from nba_api.stats.library.http import NBAStatsHTTP
 import requests
+
 # Load environment variables from .env file
 load_dotenv()
 
@@ -22,6 +23,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+# Custom NBAStatsHTTP class with proxy and SSL bypass
 class ProxyNBAStatsHTTP(NBAStatsHTTP):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -37,12 +39,13 @@ class ProxyNBAStatsHTTP(NBAStatsHTTP):
             logger.warning("No PROXY_URL found in environment variables; running without proxy.")
 
     def send_api_request(self, *args, **kwargs):
-        return super().send_api_request(*args, proxies=self.proxies, **kwargs)
+        # Bypass SSL verification for all requests
+        return super().send_api_request(*args, proxies=self.proxies, verify=False, **kwargs)
 
 # Replace the default HTTP client with our proxy-enabled version
 leaguedashplayerstats.LeagueDashPlayerStats.nba_stats_http_class = ProxyNBAStatsHTTP
 
-# Modify the NBA API headers globally to avoid request blocking
+# Modify the NBA API headers globally
 ProxyNBAStatsHTTP.headers.update({
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
                   "(KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
@@ -52,6 +55,17 @@ ProxyNBAStatsHTTP.headers.update({
     "Host": "stats.nba.com",
     "Connection": "keep-alive"
 })
+
+def check_ip_with_proxy():
+    """Fetch and log the IP address using the proxy, bypassing SSL verification"""
+    proxy_url = os.getenv('PROXY_URL')
+    proxies = {'http': proxy_url, 'https': proxy_url} if proxy_url else {}
+    try:
+        response = requests.get('https://api.ipify.org', proxies=proxies, timeout=10, verify=False)
+        ip = response.text
+        logger.info(f"External IP address detected via proxy: {ip}")
+    except Exception as e:
+        logger.error(f"Failed to check IP: {str(e)}")
 
 def api_call_with_retry(api_func, max_retries=3):
     """Make API call with retry logic"""
@@ -209,7 +223,7 @@ def check_ip_with_proxy():
 
 def main():
     logger.info("Starting stat distribution data collection")
-    check_ip_with_proxy()  # Logs IP before API calls
+    check_ip_with_proxy()
     try:
         df = get_player_stats()
         load_to_supabase(df)
