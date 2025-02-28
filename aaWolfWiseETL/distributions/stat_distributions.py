@@ -22,23 +22,21 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Custom NBAStatsHTTP class to include proxy
 class ProxyNBAStatsHTTP(NBAStatsHTTP):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Get proxy from environment variable
         proxy_url = os.getenv('PROXY_URL')
         if proxy_url:
             self.proxies = {
                 'http': proxy_url,
                 'https': proxy_url,
             }
+            logger.info(f"Proxy configured: {proxy_url}")
         else:
             self.proxies = {}
             logger.warning("No PROXY_URL found in environment variables; running without proxy.")
 
     def send_api_request(self, *args, **kwargs):
-        # Override to include proxies
         return super().send_api_request(*args, proxies=self.proxies, **kwargs)
 
 # Replace the default HTTP client with our proxy-enabled version
@@ -198,8 +196,20 @@ def load_to_supabase(df: pd.DataFrame) -> None:
         logger.error(f"Error loading data to Supabase: {str(e)}")
         raise
 
+def check_ip_with_proxy():
+    """Fetch and log the IP address using the proxy"""
+    proxy_url = os.getenv('PROXY_URL')
+    proxies = {'http': proxy_url, 'https': proxy_url} if proxy_url else {}
+    try:
+        response = requests.get('https://api.ipify.org', proxies=proxies, timeout=10)
+        ip = response.text
+        logger.info(f"External IP address detected: {ip}")
+    except Exception as e:
+        logger.error(f"Failed to check IP: {str(e)}")
+
 def main():
     logger.info("Starting stat distribution data collection")
+    check_ip_with_proxy()  # Add this to log IP before API calls
     try:
         df = get_player_stats()
         load_to_supabase(df)
