@@ -10,7 +10,7 @@ from http.client import RemoteDisconnected
 import logging
 from dotenv import load_dotenv
 from nba_api.stats.library.http import NBAStatsHTTP
-
+import requests
 # Load environment variables from .env file
 load_dotenv()
 
